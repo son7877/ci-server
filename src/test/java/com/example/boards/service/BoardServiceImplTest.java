@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,7 +24,9 @@ class BoardServiceImplTest {
     private BoardService boardService;
     @Autowired
     private BoardRepository boardRepository;
-   // test git
+
+
+    // test git
     @Nested
     class 생성{
         @Test
@@ -87,6 +91,37 @@ class BoardServiceImplTest {
             assertEquals(boardId, boardResponse.id());
             assertEquals("hongbeom", boardResponse.boardName());
             assertEquals("content", boardResponse.text());
+        }
+    }
+
+    @Nested
+    class 삭제{
+        @Test
+        void 아이디가있을때(){
+            // given
+            Board save = boardRepository.save(Board.builder()
+                    .boardName("hongbeom")
+                    .text("content")
+                    .build());
+            String boardId = save.getId().toString();
+            // when
+            boardService.deleteBoard(boardId);
+            // then
+            assertEquals(0, boardRepository.findAll().size());
+        }
+
+        @Test
+        void 아이디가없을때(){
+            // given
+            BoardRequest req = new BoardRequest(
+                    "hongbeom",
+                    "content"
+            );
+            boardService.addBoard(req);
+            String wrongId = UUID.randomUUID().toString();
+            // when && then
+            assertThrows(IllegalArgumentException.class, ()
+                    -> boardService.deleteBoard(wrongId));
         }
     }
 }

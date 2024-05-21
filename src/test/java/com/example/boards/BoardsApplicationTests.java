@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class BoardsApplicationTests {
 
-	@Value("${spring.datasource.boardName}")
-	String boardName;
+	@Value("${spring.datasource.username}")
+	String username;
 	@Test
 	void contextLoads() {
 	}
 	@Test
 	void dbBoardNameIsSa(){
-		assertEquals("sa",boardName);
+		assertEquals("sa",username);
 	}
 
 }
