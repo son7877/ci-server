@@ -22,7 +22,7 @@ class BoardServiceImplTest {
     private BoardService boardService;
     @Autowired
     private BoardRepository boardRepository;
-   // test
+   // test git
     @Nested
     class 생성{
         @Test
