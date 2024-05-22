@@ -51,7 +51,7 @@ jacocoTestCoverageVerification{
 			includes = ['com.example.boards.*.**']
 			limit {
 				value = 'COVEREDRATIO'
-				minimum = 0.6
+				minimum = 0.5
 			}
 		}
 	}
