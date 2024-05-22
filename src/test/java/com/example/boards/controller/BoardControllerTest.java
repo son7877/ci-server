@@ -75,4 +75,8 @@ class BoardControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.text", Matchers.is("content")));
     }
 
+    @Test
+    void deleteBoard() {
+
+    }
 }
