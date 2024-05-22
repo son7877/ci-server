@@ -27,15 +27,18 @@ class BoardServiceTest {
     void deleteBoard() {
         // given
         UUID boardId = UUID.randomUUID();
-        BDDMockito.doNothing().when(boardRepository).deleteById(boardId);
+        BDDMockito.doNothing().when(boardRepository).delete(BDDMockito.any(Board.class));
         BDDMockito.given(boardRepository.findById(boardId))
                 .willReturn(Optional.of(
-                        new Board(UUID.randomUUID(), "hongbeom", "content")));
+                        new Board(boardId, "hongbeom", "content")));
+
         // when
         boardService.deleteBoard(boardId.toString());
+
         // then
-        BDDMockito.then(boardRepository).should().deleteById(boardId);
+        BDDMockito.then(boardRepository).should().delete(BDDMockito.any(Board.class));
     }
+
 
     @Test
     void deleteBoardFail(){

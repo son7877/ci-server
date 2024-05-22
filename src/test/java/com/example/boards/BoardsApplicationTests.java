@@ -16,7 +16,7 @@ class BoardsApplicationTests {
 	}
 	@Test
 	void dbBoardNameIsSa(){
-		assertEquals("sa",username);
+		assertEquals("root",username);
 	}
 
 }
