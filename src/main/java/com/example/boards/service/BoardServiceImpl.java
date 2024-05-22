@@ -35,4 +35,11 @@ public class BoardServiceImpl implements BoardService{
                 .map(BoardResponse::from)
                 .orElseThrow();
     }
+
+    @Override
+    public void deleteBoard(String boardId) {
+        Board board = boardRepository.findById(UUID.fromString(boardId))
+                .orElseThrow(IllegalArgumentException::new);
+        boardRepository.delete(board);
+    }
 }
