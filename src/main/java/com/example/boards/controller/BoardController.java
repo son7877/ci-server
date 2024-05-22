@@ -31,7 +31,7 @@ public class BoardController {
     }
 
     @GetMapping("/{boardId}")
-    public BoardResponse getBoardById(@PathVariable String boardId){
+    public BoardResponse getBoardById(@PathVariable("boardId") String boardId){
         return boardService.getBoardById(boardId);
     }
 
