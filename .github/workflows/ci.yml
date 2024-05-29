@@ -53,6 +53,7 @@ jobs:
           script: |
             docker pull ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}
             docker rm -f myback
+            docker run --name mymysql -e MYSQL_USER=user -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=boards -p 3307:3306 -d mysql:8.0
             docker run --name myback -p 8080:8080 -d ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}
   dependency-submission:
     runs-on: ubuntu-latest
