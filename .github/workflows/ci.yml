@@ -23,7 +23,6 @@ jobs:
       with:
         mysql-version: '8.0'
         mysql-server-port: '3306'
-        mysql-root-password: '1234'
         mysql-database: 'boards'
         mysql-user: 'root'
         mysql-password: '1234'
