@@ -54,7 +54,7 @@ jobs:
             docker pull ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}
             docker rm -f myback
             docker run --name mymysql -e MYSQL_USER=${{ secrets.MYSQL_USER }} -e MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} -e MYSQL_DATABASE=boards -p 3307:3306 -d mysql
-            docker run --name myback -p 8080:8080 -d ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}
+            docker run --name myback -p 8080:8080 -e profiles=prod -e username=${{secrets.MYSQL_USER}} -e password=${{secrets.MYSQL_PASSWORD}} -d ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}
   dependency-submission:
     runs-on: ubuntu-latest
     permissions:
